@@ -537,9 +537,7 @@
       event.preventDefault();
 
       // $('#load_modal').openModal();
-      $('form').hide();
-      $('#load-animation').show();
-      
+
       console.log($("#nome").val());
       console.log($("#nome").text());
       console.log($("#nome").html());
@@ -551,6 +549,9 @@
         $("#nome").focus();
         return;
       }
+
+      $('form').hide();
+      $('#load-animation').show();
 
       if (form_is_valid) {
         $.ajax({
@@ -588,8 +589,10 @@
             console.log(a, b, c);
           }
         });
+      } else {
+        $('form').show();
+        $('#load-animation').hide();
       }
-
     });
   </script>
 

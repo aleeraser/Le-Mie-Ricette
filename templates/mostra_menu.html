@@ -18,7 +18,9 @@
         {{menu_options|safe}}
         <!-- Dynamic elements added with python -->
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
   </nav>
 
@@ -27,9 +29,15 @@
       <br/>
       <div class="container">
         <div class="row center-on-small-only hide-on-med-and-up">
-          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+          <a class="btn survey_action" onclick="window.history.back();">
+            <span class="hide-on-small-and-down">Indietro</span>
+            <i class="material-icons hide-on-med-and-up">navigate_before</i>
+          </a>
 
-          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a>
+          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'>
+            <span class="hide-on-small-and-down">Scarica PDF</span>
+            <i class="material-icons hide-on-med-and-up">description</i>
+          </a>
         </div>
         <div class="row">
           <h3 class="header center indigo-text darken-4-text">{{name}}</h3>
@@ -49,7 +57,9 @@
         <div class="collection" id="entree_div">
           <!-- filled dynamically -->
         </div>
-        <br/><br/><br/>
+        <br/>
+        <br/>
+        <br/>
 
         <div class="row mobile-row">
           <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Antipasti</span>
@@ -58,7 +68,9 @@
         <div class="collection" id="antipasti_div">
           <!-- filled dynamically -->
         </div>
-        <br/><br/><br/>
+        <br/>
+        <br/>
+        <br/>
 
         <div class="row mobile-row">
           <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Primi</span>
@@ -67,7 +79,9 @@
         <div class="collection" id="primi_div">
           <!-- filled dynamically -->
         </div>
-        <br/><br/><br/>
+        <br/>
+        <br/>
+        <br/>
 
         <div class="row mobile-row">
           <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Secondi</span>
@@ -76,7 +90,9 @@
         <div class="collection" id="secondi_div">
           <!-- filled dynamically -->
         </div>
-        <br/><br/><br/>
+        <br/>
+        <br/>
+        <br/>
 
         <div class="row mobile-row">
           <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Dessert</span>
@@ -85,7 +101,9 @@
         <div class="collection" id="dessert_div">
           <!-- filled dynamically -->
         </div>
-        <br/><br/><br/>
+        <br/>
+        <br/>
+        <br/>
 
         <div class="row mobile-row">
           <span class="card-panel col s12 white-text green darken-1 category-header">Lista completa ingredienti</span>
@@ -104,7 +122,8 @@
                 {{ingredient_rows|safe}}
                 <tr>
                   <th></th>
-                  <th><span class="bold">Tot. stimato:</span> {{tot_price}}</th>
+                  <th>
+                    <span class="bold">Tot. stimato:</span> {{tot_price}}</th>
                 </tr>
               </tbody>
             </table>
@@ -112,12 +131,22 @@
           </div>
         </div>
 
-        <br/><br/>
+        <br/>
+        <br/>
 
         <div class="row center-on-small-only">
-          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
-          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a>
-          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_menu}}" id='delete_menu'><span class="hide-on-small-and-down">Cancella menu</span><i class="material-icons hide-on-med-and-up">delete_forever</i></a>
+          <a class="btn survey_action" onclick="window.history.back();">
+            <span class="hide-on-small-and-down">Indietro</span>
+            <i class="material-icons hide-on-med-and-up">navigate_before</i>
+          </a>
+          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'>
+            <span class="hide-on-small-and-down">Scarica PDF</span>
+            <i class="material-icons hide-on-med-and-up">description</i>
+          </a>
+          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_menu}}" id='delete_menu'>
+            <span class="hide-on-small-and-down">Cancella menu</span>
+            <i class="material-icons hide-on-med-and-up">delete_forever</i>
+          </a>
         </div>
 
         <!-- <div class="row center-on-small-only">
@@ -221,13 +250,13 @@
           var k;
           for (k = 0; k < recipes[key].length; k++) {
             $("#" + key + "_div").append("<a href='/ricette/" + recipes[key][k] + "' class='collection-item teal lighten-5 teal-text darken-4-text'>" + recipes[key][k].replace(/__single_quote__/g, '\'').replace(/__double_quotes__/g, '"').replace(/_/g, " ") + "</a>");
-            
+
             // recipe_dict[key] += "<a href='/ricette/" + recipes[key][k] + "' class='collection-item teal lighten-5 teal-text darken-4-text'>" + recipes[key][k].replace(/__single_quote__/g, '\'').replace(/__double_quotes__/g, '"').replace(/_/g, " ") + "</a>";
           }
         }
       }
 
-      
+
     });
   </script>
 

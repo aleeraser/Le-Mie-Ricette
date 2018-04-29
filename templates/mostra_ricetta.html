@@ -18,7 +18,9 @@
         {{menu_options|safe}}
         <!-- Dynamic elements added with python -->
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
   </nav>
 
@@ -27,9 +29,15 @@
       <br/>
       <div class="container">
         <div class="row center-on-small-only hide-on-med-and-up">
-          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+          <a class="btn survey_action" onclick="window.history.back();">
+            <span class="hide-on-small-and-down">Indietro</span>
+            <i class="material-icons hide-on-med-and-up">navigate_before</i>
+          </a>
 
-          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a>
+          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'>
+            <span class="hide-on-small-and-down">Scarica PDF</span>
+            <i class="material-icons hide-on-med-and-up">description</i>
+          </a>
         </div>
         <div class="row">
           <h3 class="header center indigo-text darken-4-text">{{name}}</h3>
@@ -52,21 +60,24 @@
         <div id="info_div" class="row mobile-row">
           <div class="col s6 m4">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Tipo di portata</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{type}}
             </p>
           </div>
           <div class="col s6 m4">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Persone</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{people}}
             </p>
           </div>
           <div class="col s6 m4">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Durata</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{duration}}
             </p>
@@ -74,21 +85,24 @@
           </div>
           <div class="col s6 m4">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Difficoltà</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{difficulty}}
             </p>
           </div>
           <div class="col s6 m4">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Punteggio</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{score}}
             </p>
           </div>
           <div class="col s6 m4">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Metodo</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{method|safe}}
             </p>
@@ -113,7 +127,8 @@
                 {{ingredient_rows|safe}}
                 <tr>
                   <th></th>
-                  <th><span class="bold">Tot. stimato:</span> {{tot_price}}</th>
+                  <th>
+                    <span class="bold">Tot. stimato:</span> {{tot_price}}</th>
                 </tr>
               </tbody>
             </table>
@@ -133,12 +148,22 @@
           </div>
         </div>
 
-        <br/><br/>
+        <br/>
+        <br/>
 
         <div class="row center-on-small-only">
-          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
-          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a>
-          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_recipe}}" id='delete_recipe'><span class="hide-on-small-and-down">Cancella ricetta</span><i class="material-icons hide-on-med-and-up">delete_forever</i></a>
+          <a class="btn survey_action" onclick="window.history.back();">
+            <span class="hide-on-small-and-down">Indietro</span>
+            <i class="material-icons hide-on-med-and-up">navigate_before</i>
+          </a>
+          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'>
+            <span class="hide-on-small-and-down">Scarica PDF</span>
+            <i class="material-icons hide-on-med-and-up">description</i>
+          </a>
+          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_recipe}}" id='delete_recipe'>
+            <span class="hide-on-small-and-down">Cancella ricetta</span>
+            <i class="material-icons hide-on-med-and-up">delete_forever</i>
+          </a>
         </div>
 
         <!-- <div class="row center-on-small-only">

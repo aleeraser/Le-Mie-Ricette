@@ -18,7 +18,9 @@
         {{menu_options|safe}}
         <!-- Dynamic elements added with python -->
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
   </nav>
 
@@ -26,7 +28,10 @@
     <div class="section">
       <br/>
       <div class="container">
-        <div class="valign-wrapper" id="search_box"><i class='material-icons'>search</i><input type="text" id="search" onkeyup="search()" placeholder="Cerca..." /></div>
+        <div class="valign-wrapper" id="search_box">
+          <i class='material-icons'>search</i>
+          <input type="text" id="search" onkeyup="search()" placeholder="Cerca..." />
+        </div>
       </div>
     </div>
   </header>
@@ -38,13 +43,17 @@
 
           <span class="card-panel col s12 white-text teal lighten-1">
             <span class="category-header">{{element_category}}</span>
-          <a class="btn waves-effect waves-light red right" href="/{{element_new_link}}"><i class="large material-icons">add</i></a>
+            <a class="btn waves-effect waves-light red right" href="/{{element_new_link}}">
+              <i class="large material-icons">add</i>
+            </a>
           </span>
-          <br/><br/>
+          <br/>
+          <br/>
           <p class="teal-text">
             {{element_list|safe}}
           </p>
-          <br/><br/>
+          <br/>
+          <br/>
 
           <div class="row center-on-small-only">
             <button class="waves-effect waves-light btn" type="button" onclick="window.history.back();">Indietro</button>

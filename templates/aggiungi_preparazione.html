@@ -18,7 +18,9 @@
         {{menu_options|safe}}
         <!-- Dynamic elements added with python -->
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
   </nav>
 
@@ -69,12 +71,12 @@
             <div class="row mobile_row">
               <div class="input-field col s12 m6">
                 <select id="difficolta" name="difficolta">
-                    <option value="1">Elementare</option>
-                    <option value="2">Semplice</option>
-                    <option value="3">Medio</option>
-                    <option value="4">Avanzato</option>
-                    <option value="5">Esperto</option>
-                  </select>
+                  <option value="1">Elementare</option>
+                  <option value="2">Semplice</option>
+                  <option value="3">Medio</option>
+                  <option value="4">Avanzato</option>
+                  <option value="5">Esperto</option>
+                </select>
                 <label for="difficolta">Difficoltà</label>
               </div>
               <div class="input-field col s12 m6">
@@ -97,7 +99,8 @@
               </div>
             </div>
 
-            <br/><br/>
+            <br/>
+            <br/>
 
             <input id="counter" type="text" name="counter"></input>
 
@@ -105,7 +108,7 @@
               <span class="card-panel col s12 white-text orange darken-4 category-header">Lista ingredienti</span>
             </div>
 
-            <br class="hide-on-med-and-up"/>
+            <br class="hide-on-med-and-up" />
 
             <div id="ingr_div">
               <!-- filled dynamically -->
@@ -121,7 +124,9 @@
               <button id="add_ingr" class="waves-effect waves-light btn" type="button">Aggiungi</button>
             </div>
 
-            <br/><br/><br/>
+            <br/>
+            <br/>
+            <br/>
 
             <!-- <div class="row mobile-row">
               <span class="card-panel col s12 white-text orange darken-4 category-header">Procedimento</span>
@@ -149,7 +154,8 @@
               </div>
             </div>
 
-            <br/><br/>
+            <br/>
+            <br/>
 
             <div class="row center-on-small-only">
               <button id="submit_button" class="waves-effect waves-light btn" type="submit" value="Upload">Conferma</button>
@@ -550,8 +556,6 @@
       event.preventDefault();
 
       // $('#load_modal').openModal();
-      $('form').hide();
-      $('#load-animation').show();
 
       $('form .validate').each(function () {
         if ($(this).valid()) {
@@ -561,6 +565,9 @@
           return;
         }
       });
+
+      $('form').hide();
+      $('#load-animation').show();
 
       if (form_is_valid) {
         $.ajax({
@@ -598,6 +605,9 @@
             console.log(a, b, c);
           }
         });
+      } else {
+        $('form').show();
+        $('#load-animation').hide();
       }
 
     });

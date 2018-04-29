@@ -18,7 +18,9 @@
         {{menu_options|safe}}
         <!-- Dynamic elements added with python -->
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
     </div>
   </nav>
 
@@ -27,7 +29,10 @@
       <br/>
       <div class="container">
         <div class="row center-on-small-only hide-on-med-and-up">
-          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+          <a class="btn survey_action" onclick="window.history.back();">
+            <span class="hide-on-small-and-down">Indietro</span>
+            <i class="material-icons hide-on-med-and-up">navigate_before</i>
+          </a>
 
           <!-- <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a> -->
         </div>
@@ -52,28 +57,32 @@
         <div id="info_div" class="row mobile-row">
           <div class="col s6 m5">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Famiglia</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{family}}
             </p>
           </div>
           <div class="col s6 m5 offset-m2">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Sottofamiglia</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{subfamily}}
             </p>
           </div>
           <div class="col s6 m5">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Stagionalità</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{seasonality}}
             </p>
           </div>
           <div class="col s6 m5 offset-m2">
             <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Prezzo/kg (o litro)</span>
-            <br/><br/>
+            <br/>
+            <br/>
             <p class="teal-text">
               {{pricekg}}
             </p>
@@ -93,12 +102,19 @@
           </div>
         </div>
 
-        <br/><br/>
+        <br/>
+        <br/>
 
         <div class="row center-on-small-only">
-          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+          <a class="btn survey_action" onclick="window.history.back();">
+            <span class="hide-on-small-and-down">Indietro</span>
+            <i class="material-icons hide-on-med-and-up">navigate_before</i>
+          </a>
           <!-- <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a> -->
-          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_ingredient}}" id='delete_ingredient'><span class="hide-on-small-and-down">Cancella ingrediente</span><i class="material-icons hide-on-med-and-up">delete_forever</i></a>
+          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_ingredient}}" id='delete_ingredient'>
+            <span class="hide-on-small-and-down">Cancella ingrediente</span>
+            <i class="material-icons hide-on-med-and-up">delete_forever</i>
+          </a>
         </div>
 
         <!-- <div class="row center-on-small-only">

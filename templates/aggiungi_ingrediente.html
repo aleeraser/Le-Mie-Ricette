@@ -388,19 +388,25 @@
       event.preventDefault();
 
       // $('#load_modal').openModal();
-      $('form').hide();
-      $('#load-animation').show();
 
       $('form .validate').each(function () {
         if ($(this).valid()) {
           form_is_valid = true;
         } else {
           form_is_valid = false;
+          $('form').show();
+          $('#load-animation').hide();
           return;
         }
       });
 
+      $('form').hide();
+      $('#load-animation').show();
+
+      console.log(form_is_valid);
+
       if (form_is_valid) {
+        console.log("posting");
         $.ajax({
           url: '/aggiungi_ingrediente',
           type: 'POST',
@@ -436,8 +442,10 @@
             console.log(a, b, c);
           }
         });
+      } else {
+        $('form').show();
+        $('#load-animation').hide();
       }
-
     });
   </script>
 
