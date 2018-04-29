@@ -35,6 +35,16 @@ function setup {
 
     # virtualenv flaskenv && venv_activate && pip install setuptools --upgrade && pip install Flask flask-mysqldb gunicorn Flask-WeasyPrint cairocffi cairosvg==1.0.22
     virtualenv flaskenv && venv_activate && pip install setuptools --upgrade && pip install -r requirements.txt
+
+    cd "./static/"
+    mkdir "./img/uploaded"
+    mkdir "./img/uploaded/ingredienti"
+    mkdir "./img/uploaded/ricette"
+    mkdir "./img/uploaded/preparazioni"
+    mkdir "./pdf"
+    mkdir "./pdf/menu"
+    mkdir "./pdf/ricette"
+    mkdir "./pdf/preparazioni"
 }
 
 if [ $# -ge "2" ]; then
