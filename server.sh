@@ -33,8 +33,8 @@ function setup {
     # Press any key to continue
     read -n 1 -s -r
 
-    virtualenv flaskenv && venv_activate && pip install setuptools --upgrade && pip install Flask flask-mysqldb gunicorn Flask-WeasyPrint
-    # virtualenv flaskenv && venv_activate && pip install setuptools --upgrade && pip install -r requirements.txt
+    # virtualenv flaskenv && venv_activate && pip install setuptools --upgrade && pip install Flask flask-mysqldb gunicorn Flask-WeasyPrint cairocffi cairosvg==1.0.22
+    virtualenv flaskenv && venv_activate && pip install setuptools --upgrade && pip install -r requirements.txt
 }
 
 if [ $# -ge "2" ]; then
