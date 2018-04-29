@@ -3,6 +3,7 @@
 flaskenv/
 
 config.json
+config.all.json
 static/pdf/*
 static/img/uploaded/*
 
