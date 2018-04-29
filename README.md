@@ -1,12 +1,10 @@
 # ![QR-Vey](static/img/logo2.png?raw=true "QR-Vey")
 
-# Le Mie Ricette
-
-<!-- add logo -->
+## Le Mie Ricette
 
 A simple platform for managing recipes, ingredients and menus.
 
-## Pre-requisites
+### Pre-requisites
 
 - python 2.7 (usually pre-installed)
 - homebrew (only if installing on Mac):
@@ -34,7 +32,7 @@ Some dependencies are needed:
 - on Mac:
   - `$ brew install cairo pango gdk-pixbuf libffi`
 
-## Starting the server
+### Starting the server
 
 `$ ./server.sh start`
 
