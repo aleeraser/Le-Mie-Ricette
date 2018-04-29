@@ -53,7 +53,7 @@ else
     # perform setup if flaskenv folder is not found
     [ -d "./flaskenv" ] || setup
 
-    if [ "$1" == "start" ]; then
+    if [ "$1" == "setup" ]; then
         setup
     elif [ "$1" == "start" ]; then
         venv_activate && gunicorn app:app -b 0.0.0.0:5001 -p "le_mie_ricette.pid" -D && echo "Server started"
