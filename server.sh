@@ -9,7 +9,7 @@ function usage {
 	echo "  - server stop         : stop server"
     echo "  - server debug        : start server in debug mode"
     echo
-	echo "Note: the server starts on localhost:5000."
+	echo "Note: the server starts on localhost:5001."
 }
 
 function err {
@@ -44,7 +44,7 @@ else
     [ -d "./flaskenv" ] || setup
 
     if [ "$1" == "start" ]; then
-        venv_activate && gunicorn app:app -b 0.0.0.0:5000 -p "le_mie_ricette.pid" -D && echo "Server started"
+        venv_activate && gunicorn app:app -b 0.0.0.0:5001 -p "le_mie_ricette.pid" -D && echo "Server started"
     elif [ "$1" == "restart" ]; then
         venv_activate && kill -HUP `cat le_mie_ricette.pid` && echo "Server restarted"
     elif [ "$1" == "stop" ]; then
@@ -54,7 +54,7 @@ else
         fi
         venv_activate && kill `cat ./le_mie_ricette.pid` && echo "Server stopped"
     elif [ "$1" == "debug" ]; then
-        venv_activate && gunicorn app:app -b 0.0.0.0:5000
+        venv_activate && gunicorn app:app -b 0.0.0.0:5001
     elif [ $# != 0 ]; then
         err "Wrong parameter."
     fi
