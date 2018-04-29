@@ -4,12 +4,10 @@
 import os
 import sys
 import json
-from hashlib import md5 as start
 from flask import Flask, render_template, request, redirect, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 from flask_mysqldb import MySQL
 from weasyprint import HTML, CSS
-from urllib2 import urlopen
 
 reload(sys)
 sys.setdefaultencoding('utf8')
