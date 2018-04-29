@@ -580,10 +580,17 @@
       $('#load-animation').show();
 
       if (form_is_valid) {
+        var formData = new FormData($("form")[0]);
+
+        if ($('#foto').get(0).files.length === 0) {
+          // this is necessary since the flask backend had problems with parsing an empty file field
+          formData.delete("foto");
+        }
+
         $.ajax({
           url: '/aggiungi_ricetta',
           type: 'POST',
-          data: new FormData($('form')[0]),
+          data: formData,
           cache: false,
           contentType: false,
           processData: false,
