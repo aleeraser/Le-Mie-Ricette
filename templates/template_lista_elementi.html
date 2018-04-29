@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section">
+      <br/>
+      <div class="container">
+        <div class="valign-wrapper" id="search_box"><i class='material-icons'>search</i><input type="text" id="search" onkeyup="search()" placeholder="Cerca..." /></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section">
+      <div class="container wide-collection-container">
+        <div class="row col s12">
+
+          <span class="card-panel col s12 white-text teal lighten-1">
+            <span class="category-header">{{element_category}}</span>
+          <a class="btn waves-effect waves-light red right" href="/{{element_new_link}}"><i class="large material-icons">add</i></a>
+          </span>
+          <br/><br/>
+          <p class="teal-text">
+            {{element_list|safe}}
+          </p>
+          <br/><br/>
+
+          <div class="row center-on-small-only">
+            <button class="waves-effect waves-light btn" type="button" onclick="window.history.back();">Indietro</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+  <script>
+    function search() {
+      var filter = $("#search").val().toLowerCase();
+
+      $(".collection a").each(function () {
+        if ($(this).html().toLowerCase().indexOf(filter) > -1) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br/>
+        <h3 class="header center indigo-text darken-4-text">Nuovo ingrediente</h3>
+        <br/>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section" id="form_section">
+      <div class="container">
+        <div class="row">
+          <form class="col s12" enctype="multipart/form-data">
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Informazioni</span>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12 m6">
+                <input id="nome" name="nome" type="text" length="100" class="validate">
+                <label for="name">Nome</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <input id="famiglia" name="famiglia" type="text" length="100" class="validate">
+                <label for="name">Famiglia</label>
+              </div>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12 m6">
+                <input id="sottofamiglia" name="sottofamiglia" type="text" length="100" class="validate">
+                <label for="name">Sottofamiglia</label>
+              </div>
+
+              <div class="input-field col s12 m6">
+                <input type="number" id="prezzokg" name="prezzokg" min="0.01" max="100000" placeholder="e.g. 0.25" step="0.01" class="validate">
+                <label class="active" for="prezzokg">Prezzo/kg (o litro) in €</label>
+              </div>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12 m6" id="div_stagionalita_start">
+                <!-- <select id="stagionalita_start" name="stagionalita_start" onchange="setEnd(this);"> -->
+                <select id="stagionalita_start" name="stagionalita_start">
+                  <option value="1">Gennaio</option>
+                  <option value="2">Febbraio</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Aprile</option>
+                  <option value="5">Maggio</option>
+                  <option value="6">Giugno</option>
+                  <option value="7">Luglio</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Settembre</option>
+                  <option value="10">Ottobre</option>
+                  <option value="11">Novembre</option>
+                  <option value="12">Dicembre</option>
+                </select>
+                <label for="stagionalita_start">Stagionalità (da)...</label>
+              </div>
+
+              <div class="input-field col s12 m6" id="div_stagionalita_end">
+                <select id="stagionalita_end" name="stagionalita_end">
+                  <option value="1">Gennaio</option>
+                  <option value="2">Febbraio</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Aprile</option>
+                  <option value="5">Maggio</option>
+                  <option value="6">Giugno</option>
+                  <option value="7">Luglio</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Settembre</option>
+                  <option value="10">Ottobre</option>
+                  <option value="11">Novembre</option>
+                  <option value="12">Dicembre</option>
+                  <!-- <option value="13">Gennaio</option>
+                  <option value="14">Febbraio</option>
+                  <option value="15">Marzo</option>
+                  <option value="16">Aprile</option>
+                  <option value="17">Maggio</option>
+                  <option value="18">Giugno</option>
+                  <option value="19">Luglio</option>
+                  <option value="20">Agosto</option>
+                  <option value="21">Settembre</option>
+                  <option value="22">Ottobre</option>
+                  <option value="23">Novembre</option>
+                  <option value="24">Dicembre</option> -->
+                </select>
+                <label for="stagionalita_end">...a</label>
+              </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Descrizione</span>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12">
+                <textarea id="descrizione" name="descrizione" type="text" class="materialize-textarea validate" placeholder="e.g. L'ingrediente può essere trovato nelle coltivazioni del meridione..."></textarea>
+              </div>
+            </div>
+
+            <br/>
+
+            <div class="row mobile_row">
+              <div class="file-field input-field col s12">
+                <div class="btn">
+                  <span>Foto</span>
+                  <input type="file" name="foto" accept=".jpg, .jpeg, .png, .bmp, .gif">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path" type="text" placeholder="Carica una foto!">
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <div class="row center-on-small-only">
+              <button id="submit_button" class="waves-effect waves-light btn" type="submit" value="Upload">Conferma</button>
+            </div>
+            <br/>
+            <div class="row center-on-small-only">
+              <button id="back_button" class="waves-effect waves-light btn" type="button" onclick="window.history.back();">Indietro</button>
+            </div>
+          </form>
+
+          <div id="load-animation" class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+
+  <script type="text/javascript">
+    var i = 0;
+    var form_is_valid = false,
+      ingr_is_unique = true;
+
+    var months_end = {
+      1: "<option value='1'>Gennaio</option>",
+      2: "<option value='2'>Febbraio</option>",
+      3: "<option value='3'>Marzo</option>",
+      4: "<option value='4'>Aprile</option>",
+      5: "<option value='5'>Maggio</option>",
+      6: "<option value='6'>Giugno</option>",
+      7: "<option value='7'>Luglio</option>",
+      8: "<option value='8'>Agosto</option>",
+      9: "<option value='9'>Settembre</option>",
+      10: "<option value='10'>Ottobre</option>",
+      11: "<option value='11'>Novembre</option>",
+      12: "<option value='12'>Dicembre</option>"
+    }
+
+    $(document).ready(function () {
+      // $('#back_button').on('focus', function () {
+      //   window.location.href = window.history.back();
+      // });
+
+      // for (i; i <= 12; i++) {
+      //   $("#stagionalita_end").append(months_end[i]);
+      // }
+
+      $('#stagionalita_start').material_select();
+      $('#stagionalita_end').material_select();
+    });
+
+    // Custom validators
+    jQuery.validator.addMethod("mustBeUnique", function (value, element) {
+      return this.optional(element) || ingr_is_unique;
+    }, "Hai già inserito un ingrediente con questo nome.");
+
+    // Custom validators
+    jQuery.validator.addMethod("correctPrice", function (value, element) {
+      var flag = true;
+
+      if (value.indexOf('.') != -1) {
+        if (value.split(".")[1].length > 2) {
+          flag = false;
+        }
+      }
+
+      return this.optional(element) || flag;
+    }, "Inserisci un prezzo valido.");
+
+    // Rules for validate form fields
+    $('form').validate({
+      rules: {
+        nome: {
+          required: true,
+          maxlength: 100,
+          mustBeUnique: true
+        },
+        famiglia: {
+          required: true,
+          maxlength: 100
+        },
+        sottofamiglia: {
+          required: true,
+          maxlength: 100
+        },
+        prezzokg: {
+          required: true,
+          step: false,
+          correctPrice: true
+        },
+        descrizione: {
+          required: true,
+          maxlength: 65534
+        }
+      },
+      messages: {
+        nome: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 100 caratteri."
+        },
+        famiglia: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 100 caratteri."
+        },
+        sottofamiglia: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 100 caratteri."
+        },
+        prezzokg: {
+          required: "Questo campo è obbligatorio.",
+          number: "Inserisci un numero valido.",
+          min: "Inserisci un valore maggiore di zero."
+        },
+        descrizione: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 65534 caratteri."
+        }
+      },
+      errorElement: 'div',
+      errorPlacement: function (error, element) {
+        var placement = $(element).data('error');
+        if (placement) {
+          $(placement).append(error)
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+
+    $("#prezzokg").blur(function () {
+      if ($(this).valid()) {
+        $(this).removeClass('invalid');
+      }
+    });
+
+    // function setEnd(element) {
+    //   // $(":selected", element).html();
+    //   var i = element.value;
+    //   var sel = $("#stagionalita_end");
+
+    //   $('option', sel).each(function () {
+    //     $(this).remove();
+    //   });
+
+    //   for (i; i <= 12; i++) {
+    //     sel.append(months_end[i]);
+    //   }
+
+    //   sel.material_select();
+    // }
+
+    $('form .validate').blur(function () {
+
+      if ($(this).is('#nome')) {
+        $.ajax({
+          url: '/nel_database_' + $('#nome').val() + '_cat:ingrediente',
+          type: 'GET',
+          success: function (response) {
+            if (response == "1") {
+              ingr_is_unique = false;
+              form_is_valid = false;
+            } else {
+              ingr_is_unique = true;
+              form_is_valid = true;
+            }
+            $("#nome").valid();
+          },
+          error: function (a, b, c) {
+            console.log(a, b, c);
+          }
+        });
+      } else if ($(this).valid()) {
+        form_is_valid = true;
+      } else {
+        form_is_valid = false;
+      }
+      if (!form_is_valid) {
+        return;
+      }
+    });
+
+    // Custon submit method
+    $('form').on("submit", function (event) {
+      event.preventDefault();
+
+      // $('#load_modal').openModal();
+      $('form').hide();
+      $('#load-animation').show();
+
+      $('form .validate').each(function () {
+        if ($(this).valid()) {
+          form_is_valid = true;
+        } else {
+          form_is_valid = false;
+          return;
+        }
+      });
+
+      if (form_is_valid) {
+        $.ajax({
+          url: '/aggiungi_ingrediente',
+          type: 'POST',
+          data: new FormData($('form')[0]),
+          cache: false,
+          contentType: false,
+          processData: false,
+
+          success: function (response) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            if (response == "0") {
+              ingr_is_unique = false;
+              form_is_valid = false;
+              $("#nome").valid();
+            } else if (response == "1") {
+              form_is_valid = false;
+            } else if (response == "2") {
+              form_is_valid = false;
+            } else {
+              ingr_is_unique = true;
+              form_is_valid = true;
+              window.location.replace(response);
+            }
+          },
+          error: function (a, b, c) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            console.log(a, b, c);
+          }
+        });
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

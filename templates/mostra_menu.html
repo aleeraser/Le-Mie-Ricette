@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section">
+      <br/>
+      <div class="container">
+        <div class="row center-on-small-only hide-on-med-and-up">
+          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+
+          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a>
+        </div>
+        <div class="row">
+          <h3 class="header center indigo-text darken-4-text">{{name}}</h3>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section mobile-section">
+      <div class="container">
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Entrée</span>
+        </div>
+        <br class="hide-on-med-and-up" />
+        <div class="collection" id="entree_div">
+          <!-- filled dynamically -->
+        </div>
+        <br/><br/><br/>
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Antipasti</span>
+        </div>
+        <br class="hide-on-med-and-up" />
+        <div class="collection" id="antipasti_div">
+          <!-- filled dynamically -->
+        </div>
+        <br/><br/><br/>
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Primi</span>
+        </div>
+        <br class="hide-on-med-and-up" />
+        <div class="collection" id="primi_div">
+          <!-- filled dynamically -->
+        </div>
+        <br/><br/><br/>
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Secondi</span>
+        </div>
+        <br class="hide-on-med-and-up" />
+        <div class="collection" id="secondi_div">
+          <!-- filled dynamically -->
+        </div>
+        <br/><br/><br/>
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Dessert</span>
+        </div>
+        <br class="hide-on-med-and-up" />
+        <div class="collection" id="dessert_div">
+          <!-- filled dynamically -->
+        </div>
+        <br/><br/><br/>
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text green darken-1 category-header">Lista completa ingredienti</span>
+        </div>
+
+        <div class="row mobile-row">
+          <div class="col s12">
+            <table class="highlight">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Quantitá</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{ingredient_rows|safe}}
+                <tr>
+                  <th></th>
+                  <th><span class="bold">Tot. stimato:</span> {{tot_price}}</th>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <br/><br/>
+
+        <div class="row center-on-small-only">
+          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+          <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a>
+          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_menu}}" id='delete_menu'><span class="hide-on-small-and-down">Cancella menu</span><i class="material-icons hide-on-med-and-up">delete_forever</i></a>
+        </div>
+
+        <!-- <div class="row center-on-small-only">
+					{{download_pdf|safe}}
+				</div> -->
+        <div class="row center-on-small-only">
+          <!-- {{delete_survey|safe}} -->
+          <!-- Modal Structure -->
+          <div id="confirm_modal" class="modal">
+            <div class="modal-content">
+              <h4>Conferma</h4>
+              <p>Sei sicuro di voler cancellare il menu?</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+              <a id="confirm_modal_yes" href="" class="modal-action modal-close waves-effect waves-green btn-flat">Si</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="load-animation" class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+
+  <script type="text/javascript">
+    var name = "{{name}}";
+    var recipe_dict = {
+      "entree": [],
+      "antipasti": [],
+      "primi": [],
+      "secondi": [],
+      "dessert": []
+    };
+
+    $(document).ready(function () {
+      $("#confirm_modal_yes").attr("href", $("#delete_menu").attr("path"));
+      $('.modal-trigger').leanModal();
+
+      var recipes = JSON.parse(`{{ saved_recipes | safe }}`);
+
+      for (var key in recipes) {
+        if (recipes.hasOwnProperty(key)) {
+          var k;
+          for (k = 0; k < recipes[key].length; k++) {
+            $("#" + key + "_div").append("<a href='/ricette/" + recipes[key][k] + "' class='collection-item teal lighten-5 teal-text darken-4-text'>" + recipes[key][k].replace(/__single_quote__/g, '\'').replace(/__double_quotes__/g, '"').replace(/_/g, " ") + "</a>");
+            
+            // recipe_dict[key] += "<a href='/ricette/" + recipes[key][k] + "' class='collection-item teal lighten-5 teal-text darken-4-text'>" + recipes[key][k].replace(/__single_quote__/g, '\'').replace(/__double_quotes__/g, '"').replace(/_/g, " ") + "</a>";
+          }
+        }
+      }
+
+      
+    });
+  </script>
+
+</body>
+
+</html>

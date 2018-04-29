@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section">
+      <br/>
+      <div class="container">
+        <div class="row center-on-small-only hide-on-med-and-up">
+          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+
+          <!-- <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a> -->
+        </div>
+        <div class="row">
+          <h3 class="header center indigo-text darken-4-text">{{name}}</h3>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section mobile-section">
+      <div class="container">
+        {{picture|safe}}
+
+        <meta id="ingredient-name" data-name="{{name}}">
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text orange darken-4 category-header">Informazioni</span>
+        </div>
+
+        <div id="info_div" class="row mobile-row">
+          <div class="col s6 m5">
+            <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Famiglia</span>
+            <br/><br/>
+            <p class="teal-text">
+              {{family}}
+            </p>
+          </div>
+          <div class="col s6 m5 offset-m2">
+            <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Sottofamiglia</span>
+            <br/><br/>
+            <p class="teal-text">
+              {{subfamily}}
+            </p>
+          </div>
+          <div class="col s6 m5">
+            <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Stagionalità</span>
+            <br/><br/>
+            <p class="teal-text">
+              {{seasonality}}
+            </p>
+          </div>
+          <div class="col s6 m5 offset-m2">
+            <span class="card-panel col s12 teal-text darken-4-text teal lighten-5">Prezzo/kg (o litro)</span>
+            <br/><br/>
+            <p class="teal-text">
+              {{pricekg}}
+            </p>
+            <br class="hide-on-med-and-up" />
+          </div>
+        </div>
+
+        <div class="row mobile-row">
+          <span class="card-panel col s12 white-text orange darken-4 category-header">Descrizione</span>
+        </div>
+
+        <div class="row mobile-row">
+          <div class="col s12">
+            <p>
+              {{description}}
+            </p>
+          </div>
+        </div>
+
+        <br/><br/>
+
+        <div class="row center-on-small-only">
+          <a class="btn survey_action" onclick="window.history.back();"><span class="hide-on-small-and-down">Indietro</span><i class="material-icons hide-on-med-and-up">navigate_before</i></a>
+          <!-- <a class="btn survey_action blue" href='{{download_pdf}}' id='download_pdf' target='_blank'><span class="hide-on-small-and-down">Scarica PDF</span><i class="material-icons hide-on-med-and-up">description</i></a> -->
+          <a class="btn survey_action red modal-trigger" href='#confirm_modal' path="{{delete_ingredient}}" id='delete_ingredient'><span class="hide-on-small-and-down">Cancella ingrediente</span><i class="material-icons hide-on-med-and-up">delete_forever</i></a>
+        </div>
+
+        <!-- <div class="row center-on-small-only">
+					{{download_pdf|safe}}
+				</div> -->
+        <div class="row center-on-small-only">
+          <!-- {{delete_survey|safe}} -->
+          <!-- Modal Structure -->
+          <div id="confirm_modal" class="modal">
+            <div class="modal-content">
+              <h4>Conferma</h4>
+              <p>Sei sicuro di voler cancellare l'ingrediente?</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+              <a id="confirm_modal_yes" href="" class="modal-action modal-close waves-effect waves-green btn-flat">Si</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="load-animation" class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+
+  <script type="text/javascript">
+    var name = "";
+
+    $(document).ready(function () {
+      $("#confirm_modal_yes").attr("href", $("#delete_ingredient").attr("path"));
+      $('.modal-trigger').leanModal();
+
+      name = $('#ingredient-name').data("name");
+    });
+
+    $("#foto_path").on("change", function () {
+      $('.row').hide();
+      $('#load-animation').show();
+
+      $.ajax({
+        url: '/aggiungi_foto_' + name + '_cat:ingrediente',
+        type: 'POST',
+        data: new FormData($('form')[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+
+        success: function (response) {
+          $('.row').show();
+          $('#load-animation').hide();
+
+          if (response == "0") {
+            window.location.replace("/error");
+          } else {
+            window.location.reload();
+          }
+        },
+        error: function (a, b, c) {
+          $('.row').show();
+          $('#load-animation').hide();
+
+          // error
+          console.log(a, b, c);
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='it'>
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role='navigation'>
+    <div class='nav-wrapper container'>
+      {{navbar|safe}}
+      <ul class='right hide-on-med-and-down'>
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id='nav-mobile' class='side-nav'>
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href='#' data-activates='nav-mobile' class='button-collapse'><i class='material-icons'>menu</i></a>
+    </div>
+  </nav>
+
+  <header>
+    <div class='section no-pad-bot' id='index-banner'>
+      <div class='container'>
+        <br/><br class='hide-on-small-and-down' />
+        <h1 class='header center orange-text'>Le mie ricette</h1>
+        <div class='row center'>
+          <h5 class='header col s12 light'>Seleziona una categoria</h5>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class='section' id='page_content'>
+      <div class='container'>
+
+        <br class='hide-on-small-and-down' />
+        <div class='row center'>
+          <a href='/ricette' class='btn-large waves-effect waves-light orange home-button'>Ricette</a>
+          <a href='/preparazioni' class='btn-large waves-effect waves-light orange home-button'>Preparazioni</a>
+          <a href='/ingredienti' class='btn-large waves-effect waves-light orange home-button'>Ingredienti</a>
+          <br class='hide-on-small-and-down' />
+          <br class='hide-on-small-and-down' />
+          <a href='/metodi' class='btn-large waves-effect waves-light orange home-button'>Metodi</a>
+          <a href='/menu' class='btn-large waves-effect waves-light orange home-button'>Menu</a>
+          <a href='/cerca' class='btn-large waves-effect waves-light orange home-button'>Cerca</a>
+        </div>
+        <br class='hide-on-small-and-down' /><br/>
+
+        <div class='row center'>
+          <div class="col s12">
+            <img id='homepage_logo' src="{{ url_for('static', filename='img/logo2.png') }}" alt='logo'>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Dynamic footer added with python -->
+  {{footer|safe}}
+
+  <!--  Scripts-->
+  <script src='../static/js/materialize.min.js'></script>
+  <script src='../static/js/init.js'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section">
+      <br/>
+      <div class="container">
+        <h5 class="header center indigo-text darken-4-text">{{message|safe}}</h5>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section">
+      <div class="container wide-collection-container">
+        <div class="row col s12 center">
+          <button class="waves-effect waves-light btn" type="button" onclick="location.href='{{add_url}}'">{{add_msg}}</button>
+        </div>
+
+        <div class="row col s12 center">
+          <button class="waves-effect waves-light btn" type="button" onclick="window.history.back();">Indietro</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br/>
+        <h3 class="header center indigo-text darken-4-text">Nuova preparazione</h3>
+        <br/>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section" id="form_section">
+      <div class="container">
+        <div class="row">
+          <form class="col s12" enctype="multipart/form-data">
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Informazioni generali</span>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12">
+                <input id="nome" name="nome" type="text" length="100" class="validate">
+                <label for="name">Nome della preparazione</label>
+              </div>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12 m6">
+                <p class="range-field form-range">
+                  <span id="persone_val">Persone: 1</span>
+                  <input type="range" id="persone" name="persone" min="1" max="20" value="1" />
+                  <!-- <label for="persone">Persone</label> -->
+                </p>
+              </div>
+              <div class="input-field col s12 m6">
+                <p class="range-field form-range">
+                  <span id="durata_val">Durata (minuti): 1</span>
+                  <input type="range" id="durata" name="durata" min="1" max="240" value="1" />
+                  <!-- <label for="durata">Durata</label> -->
+                </p>
+              </div>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12 m6">
+                <select id="difficolta" name="difficolta">
+                    <option value="1">Elementare</option>
+                    <option value="2">Semplice</option>
+                    <option value="3">Medio</option>
+                    <option value="4">Avanzato</option>
+                    <option value="5">Esperto</option>
+                  </select>
+                <label for="difficolta">Difficoltà</label>
+              </div>
+              <div class="input-field col s12 m6">
+                <p class="range-field form-range">
+                  <span id="punteggio_val">Punteggio: 1</span>
+                  <input type="range" id="punteggio" name="punteggio" min="1" max="5" value="1" />
+                  <!-- <label for="punteggio">Punteggio</label> -->
+                </p>
+              </div>
+            </div>
+
+            <div class="row mobile_row">
+              <div class="input-field col s12 m6">
+                <select id="metodo" name="metodo" onchange="check_add_new(this, '/aggiungi_metodo');">
+                  <!-- dynamically populated -->
+                  {{saved_methods|safe}}
+                  <option value="_nuovo_">+ Aggiungi metodo...</option>
+                </select>
+                <label for="metodo">Metodo</label>
+              </div>
+            </div>
+
+            <br/><br/>
+
+            <input id="counter" type="text" name="counter"></input>
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Lista ingredienti</span>
+            </div>
+
+            <br class="hide-on-med-and-up"/>
+
+            <div id="ingr_div">
+              <!-- filled dynamically -->
+
+              <!-- this is a meta element to pass data from the flask server to javascript using jinja2 template -->
+              <meta id="ingredient-data" data-name="{{saved_ingredients}}">
+            </div>
+
+            <br/>
+
+            <div id="add_ingr_div" class="center-on-small-only">
+              <br/>
+              <button id="add_ingr" class="waves-effect waves-light btn" type="button">Aggiungi</button>
+            </div>
+
+            <br/><br/><br/>
+
+            <!-- <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Procedimento</span>
+            </div> -->
+
+            <div class="row mobile_row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Procedimento</span>
+              <div class="input-field col s12">
+                <textarea id="descrizione" name="descrizione" type="text" class="materialize-textarea validate" placeholder="e.g. Per iniziare la preparazione, prendere 200g di..."></textarea>
+                <!-- <label for="descrizione">Procedimento</label> -->
+              </div>
+            </div>
+
+            <br/>
+
+            <div class="row mobile_row">
+              <div class="file-field input-field col s12">
+                <div class="btn">
+                  <span>Foto</span>
+                  <input type="file" name="foto" accept=".jpg, .jpeg, .png, .bmp, .gif">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path" type="text" placeholder="Carica una foto!">
+                </div>
+              </div>
+            </div>
+
+            <br/><br/>
+
+            <div class="row center-on-small-only">
+              <button id="submit_button" class="waves-effect waves-light btn" type="submit" value="Upload">Conferma</button>
+            </div>
+            <br/>
+            <div class="row center-on-small-only">
+              <button id="back_button" class="waves-effect waves-light btn" type="button" onclick="window.history.back();">Indietro</button>
+            </div>
+          </form>
+
+          <!-- <div id='load_modal' class='modal transparent'>
+            <div class='modal-content transparent center-align'>
+
+              <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+
+                <div class="spinner-layer spinner-red">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div> -->
+
+          <div id="load-animation" class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+
+  <script type="text/javascript">
+    var i = 0;
+    var form_is_valid = false,
+      prep_is_unique = true,
+      delete_enabled = true,
+      ingr_is_unique = true;
+    const min_ingr = 1;
+
+    var ingr_options = "";
+
+    $(document).ready(function () {
+      // $('#back_button').on('focus', function () {
+      //   window.location.href = window.history.back();
+      // })
+
+      // $('#persone').attr('value', 1);
+      // $('#punteggio').attr('value', 1);
+      // $('#durata').attr('value', 1);
+
+      ingr_options = $('#ingredient-data').data("name");
+
+      $('select').material_select();
+
+      // $('#load_modal').openModal();
+      $("#counter").val(0);
+
+      $('#add_ingr').click();
+    });
+
+    // Custom validators
+    jQuery.validator.addMethod("mustBeUnique", function (value, element) {
+      return this.optional(element) || prep_is_unique;
+    }, "Hai già inserito una preparazione con questo nome.");
+
+    jQuery.validator.addMethod("notDuplicated", function (value, element) {
+      checkDuplicates();
+      return ingr_is_unique;
+    }, "Questo ingrediente è già presente.");
+
+    $('#persone').on('input mousedown touchstart', function () {
+      $('#persone_val').text('Persone: ' + $(this).val());
+    });
+    $('#persone').on('change', function () {
+      $('#persone_val').text('Persone: ' + $(this).val());
+    });
+    $('#durata').on('input mousedown touchstart', function () {
+      $('#durata_val').text('Durata (minuti): ' + $(this).val());
+    });
+    $('#durata').on('change', function () {
+      $('#durata_val').text('Durata (minuti): ' + $(this).val());
+    });
+    $('#punteggio').on('input mousedown touchstart', function () {
+      $('#punteggio_val').text('Punteggio: ' + $(this).val());
+    });
+    $('#punteggio').on('change', function () {
+      $('#punteggio_val').text('Punteggio: ' + $(this).val());
+    });
+
+    // toogle delete button for ingredients
+    function checkDeleteButtonsState() {
+      $('#ingr_div button.delete_ingr').each(function () {
+        if ((i == min_ingr) && (delete_enabled)) {
+          $(this).addClass('disabled').prop("disabled", true);
+        } else if ((i == (min_ingr + 1)) && (!delete_enabled)) {
+          $(this).removeClass('disabled').prop("disabled", false);
+        }
+      });
+      delete_enabled = !delete_enabled;
+    }
+
+    // check duplicates for ingredients
+    function checkDuplicates() {
+      var k = 1,
+        counter = 0,
+        n = 0;
+      for (k = 1; k <= i; k++) {
+        var ingr = $('#ingr_' + k);
+        var ingr_val = ingr.val();
+
+        $('#ingr_div .ingr').each(function () {
+          if ($(this).val() == ingr_val) {
+            counter++;
+          }
+        });
+
+      }
+
+      if (counter > 0) {
+        console.log("ci sono dei duplicati");
+        ingr_is_unique = false;
+      } else {
+        ingr_is_unique = true;
+        console.log("NO duplicati");
+      }
+    }
+
+    function check_add_new(el, new_path) {
+      if (el.value == "_nuovo_") {
+        window.location.replace(new_path);
+      }
+    }
+
+    // add new ingredient
+    $('#add_ingr').on('click', function () {
+      i++;
+      var new_ingr = '<div id="div_ingr_' + i + '" class="row mobile_row ingr_row">' +
+        '<div class="input-field col s8 m6"><select onchange="check_add_new(this, \'/aggiungi_ingrediente\');" id="ingr_' + i + '" name="ingr_' + i + '" class="ingr">' +
+        ingr_options + '<option value="_nuovo_">+ Aggiungi nuovo ingrediente...</option></select><label for="ingr_' + i + '">Ingrediente ' + i + '</label></div>' +
+        '<div class="hide-on-med-and-up input-field col s2"><button id="small_delete_ingr_' + i +
+        '" type="button" class="waves-effect waves-light btn delete_ingr red white-text">X</button></div>' +
+        '<div class="input-field col s6 m2"><input type="number" id="quantita_' + i + '" name="quantita_' + i +
+        '" min="0" max="100000" placeholder="e.g. 200" class="validate"><label class="active" for="quantita_' + i +
+        '">Quantità</label></div>' +
+        '<div class="input-field col s6 m2"><select id="unita_' + i + '" name="unita_' + i +
+        '"><option value="1">grammi</option><option value="2">kg</option><option value="3">litri</option><option value="4">ml</option><option value="5">q.b.</option><option value="6">pezzi</option></select><label for="unita_' +
+        i + '">Unità</label></div>' +
+        '<div class="hide-on-small-only input-field col s2"><button id="big_delete_ingr_' + i +
+        '" type="button" class="waves-effect waves-light btn delete_ingr red white-text">X</button></div></div>';
+      $('#ingr_div').append(new_ingr);
+
+      $("#counter").val(i);
+
+      // questo non funziona
+      // $(".ingr").each(function(){
+      //   $(this).rules("add", {
+      //     notDuplicated: true,
+      //     messages: {
+      //       notDuplicated: "Questo ingrediente è già presente."
+      //     }
+      //   });
+      // });
+
+      $("#ingr_div input[type=number]").each(function () {
+        $(this).rules("add", {
+          // required: "#ingr_div select option[value='6']:selected",
+          required: function (element) {
+            return $('#ingr_div select :selected').text() != 'q.b.';
+          },
+          number: true,
+          messages: {
+            required: "Questo campo è obbligatorio.",
+            number: "Inserisci un numero valido.",
+            min: "Inserisci un valore maggiore di zero."
+          }
+        });
+      });
+
+      $('#ingr_' + i).material_select();
+      $('#unita_' + i).material_select();
+
+      checkDeleteButtonsState()
+    });
+
+    $('#ingr_div').on('change', 'select', function () {
+      var id = $(this).attr('id').split("_")[1];
+      if ($(':selected', this).text() == 'q.b.') {
+        $('#quantita_' + id).addClass('disabled').prop("disabled", true).val("0").valid();
+      } else {
+        $('#quantita_' + id).removeClass('disabled').prop("disabled", false);
+      }
+    });
+
+    // delete ingredient
+    $('#ingr_div').on('click', '.delete_ingr', function () {
+      var ingr_num = $(this).attr('id').split("_")[3];
+      $("#div_ingr_" + ingr_num).remove();
+      for (k = parseInt(ingr_num) + 1; k <= i; k++) {
+        var div = $("#div_ingr_" + k),
+          ingr = $("#ingr_" + k),
+          quantity = $("#quantita_" + k),
+          unity = $("#unita_" + k),
+          btn1 = $("#small_delete_ingr_" + k),
+          btn2 = $("#big_delete_ingr_" + k);
+
+        var new_index = k - 1;
+
+        div.attr('id', "div_ingr_" + new_index);
+
+        ingr.attr('name', "ingr_" + new_index);
+        $("div.select-wrapper:has(#ingr_" + k + ") + label").attr('for', "ingr_" + new_index);
+        $("div.select-wrapper:has(#ingr_" + k + ") + label").html("Ingrediente " + new_index);
+        ingr.attr('id', "ingr_" + new_index);
+
+        quantity.attr('name', "quantita_" + new_index);
+        $("#quantita_" + k + " + label").attr('for', "quantita_" + new_index);
+        quantity.attr('id', "quantita_" + new_index);
+
+        unity.attr('name', "unita_" + new_index);
+        $("div.select-wrapper:has(#unita_" + k + ") + label").attr('for', "unita_" + new_index);
+        unity.attr('id', "unita_" + new_index);
+
+        btn1.attr('id', "small_delete_ingr_" + new_index);
+        btn2.attr('id', "big_delete_ingr_" + new_index);
+      }
+
+      i--;
+      $("#counter").val(i);
+      checkDeleteButtonsState();
+    });
+
+    // Rules for validate form fields
+    $('form').validate({
+      rules: {
+        nome: {
+          required: true,
+          maxlength: 100,
+          mustBeUnique: true
+        },
+        descrizione: {
+          required: true,
+          maxlength: 65534
+        }
+        // foto: {
+        //   required: true
+        // }
+      },
+      messages: {
+        nome: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 100 caratteri."
+        },
+        descrizione: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 65534 caratteri."
+        }
+      },
+      errorElement: 'div',
+      errorPlacement: function (error, element) {
+        var placement = $(element).data('error');
+        if (placement) {
+          $(placement).append(error)
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+
+    $('form .validate').blur(function () {
+
+      if ($(this).is('#nome')) {
+        $.ajax({
+          url: '/nel_database_' + $('#nome').val() + '_cat:preparazione',
+          type: 'GET',
+          success: function (response) {
+            if (response == "1") {
+              prep_is_unique = false;
+              form_is_valid = false;
+            } else {
+              prep_is_unique = true;
+              form_is_valid = true;
+            }
+            $("#nome").valid();
+          },
+          error: function (a, b, c) {
+            console.log(a, b, c);
+          }
+        });
+      } else if ($(this).valid()) {
+        form_is_valid = true;
+      } else {
+        form_is_valid = false;
+      }
+      if (!form_is_valid) {
+        return;
+      }
+    });
+
+    // Custon submit method
+    $('form').on("submit", function (event) {
+      event.preventDefault();
+
+      // $('#load_modal').openModal();
+      $('form').hide();
+      $('#load-animation').show();
+
+      $('form .validate').each(function () {
+        if ($(this).valid()) {
+          form_is_valid = true;
+        } else {
+          form_is_valid = false;
+          return;
+        }
+      });
+
+      if (form_is_valid) {
+        $.ajax({
+          url: '/aggiungi_preparazione',
+          type: 'POST',
+          data: new FormData($('form')[0]),
+          cache: false,
+          contentType: false,
+          processData: false,
+
+          success: function (response) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            if (response == "0") {
+              prep_is_unique = false;
+              form_is_valid = false;
+              $("#nome").valid();
+            } else if (response == "1") {
+              form_is_valid = false;
+            } else if (response == "2") {
+              form_is_valid = false;
+            } else {
+              prep_is_unique = true;
+              form_is_valid = true;
+              window.location.replace(response);
+            }
+          },
+          error: function (a, b, c) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            console.log(a, b, c);
+          }
+        });
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br/>
+        <h3 class="header center indigo-text darken-4-text">Ricerca</h3>
+        <br/>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section" id="form_section">
+      <div class="container">
+        <div class="row">
+          <form class="col s12" enctype="multipart/form-data">
+
+            <div class="row mobile-row">
+              <div class="col s12">
+                Cosa vuoi cercare?
+                <div class="input-field inline" id="category_div">
+                  <select id="category" name="category" onchange="putPlaceholder(this);">
+                    <option value="Ricette">Ricette</option>
+                    <option value="Preparazioni">Preparazioni</option>
+                    <option value="Ingredienti">Ingredienti</option>
+                    <option value="Metodi">Metodi</option>
+                    <option value="Menu">Menu</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mobile-row">
+              <div class="col s12">
+                In base a cosa vuoi cercare?
+                <div class="input-field inline" id="property_div">
+                  <!-- filled dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                Inserisci la parola chiave da cercare:
+                <div class="input-field inline">
+                  <input id="keyword" name="keyword" type="text" class="validate">
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <div class="row center-on-small-only">
+              <button id="submit_button" class="waves-effect waves-light btn" type="submit" value="Upload">Conferma</button>
+            </div>
+            <br/>
+            <div class="row center-on-small-only">
+              <button id="form_back_button" class="waves-effect waves-light btn" type="button" onclick="window.history.back();">Indietro</button>
+            </div>
+          </form>
+
+          <div id="load-animation" class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+
+  <script type="text/javascript">
+    var i = 0;
+    var form_is_valid = false;
+
+    var property = {
+      "Ricette": '<select id="property" name="property"><option value="nome">Nome</option><option value="tipo">Tipo</option><option value="persone">Persone</option><option value="durata">Durata</option><option value="difficolta">Difficoltá</option><option value="punteggio">Punteggio</option><option value="metodo">Metodo</option><option value="ingrediente">Ingrediente</option></select>',
+      "Preparazioni": '<select id="property" name="property"><option value="nome">Nome</option><option value="tipo">Persone</option><option value="durata">Durata</option><option value="difficolta">Difficoltá</option><option value="punteggio">Punteggio</option><option value="metodo">Metodo</option><option value="ingrediente">Ingrediente</option></select>',
+      "Ingredienti": '<select id="property" name="property" onchange="putPlaceholder(this);"><option value="nome">Nome</option><option value="famiglia">Famiglia</option><option value="sottofamiglia">Sottofamiglia</option><option value="stagionalita">Stagionalità</option><option value="prezzokg">Prezzo/kg</option></select>',
+      "Metodi": '<select id="property" name="property"><option value="nome">Nome</option></select>',
+      "Menu": '<select id="property" name="property"><option value="nome">Nome</option><option value="ricetta">Ricetta</option</select>'
+    }
+
+    $(document).ready(function () {
+      // $('button.back-btn').on('focus', function () {
+      //   window.location.href = window.history.back();
+      // })
+
+      $("#property_div").append(property["Ricette"]);
+
+      $('select').material_select();
+    });
+
+    function putPlaceholder(element) {
+      if (element.value == "stagionalita") {
+        $("#keyword").attr("placeholder", "Per separare i mesi NON usare spazi, ma trattino (-), underscore (_), etc...");
+      } else {
+        $("#keyword").attr("placeholder", "");
+      }
+    }
+
+    $("#category").on("change", () => {
+      $("#property_div > div").remove();
+      $("#property_div").append(property[$("#category_div li.selected > span").html()]);
+      $('select').material_select();
+    });
+
+    function new_search() {
+      $('header h3').text("Ricerca");
+      $('header h5').remove();
+      $('#results_container').remove();
+      $('form').show();
+    }
+
+    function show_results(data) {
+      var collection = data.split("__?num=")[0];
+      var n_res = data.split("__?num=")[1];
+
+      var header = n_res == 1 ? "<h5 class='center indigo-text'>Trovato " + n_res + " risultato</h5>" : "<h5 class='center indigo-text'>Trovati " + n_res + " risultati</h5>"
+
+      $('header h3').text("Risultati ricerca");
+      $('header div.container').append(header);
+      $('form').hide();
+      $('#form_section > .container > .row').append("<div id='results_container'</div>");
+      $('#results_container').append(collection);
+      $('#results_container').append("<br/><div class='row center'><button id='new_search' class='waves-effect waves-light btn' type='button' onclick='new_search();'>Nuova ricerca</button></div>");
+      // $('#results_container').append("<div class='row center-on-small-only'><button id='back_button' class='waves-effect waves-light btn back-btn' type='button' onclick='window.history.back();'>Indietro</button></div>");
+    }
+
+    // Rules for validate form fields
+    $('form').validate({
+      rules: {
+        keyword: {
+          required: true,
+          maxlength: 100
+        },
+      },
+      messages: {
+        keyword: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 100 caratteri."
+        }
+      },
+      errorElement: 'div',
+      errorPlacement: function (error, element) {
+        var placement = $(element).data('error');
+        if (placement) {
+          $(placement).append(error)
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+
+    // Custon submit method
+    $('form').on("submit", function (event) {
+      event.preventDefault();
+
+      // $('#load_modal').openModal();
+      $('form').hide();
+      $('#load-animation').show();
+
+      $('form .validate').each(function () {
+        if ($(this).valid()) {
+          form_is_valid = true;
+        } else {
+          form_is_valid = false;
+          return;
+        }
+      });
+
+      if (form_is_valid) {
+        $.ajax({
+          url: '/cerca',
+          type: 'POST',
+          data: new FormData($('form')[0]),
+          cache: false,
+          contentType: false,
+          processData: false,
+
+          success: function (response) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            if (response == "0") {
+              form_is_valid = false;
+              $("#keyword").valid();
+            } else {
+              form_is_valid = true;
+              show_results(response);
+            }
+          },
+          error: function (a, b, c) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            console.log(a, b, c);
+          }
+        });
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

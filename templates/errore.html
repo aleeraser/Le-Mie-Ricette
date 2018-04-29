@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='it'>
+
+<head>
+  {{page_head|safe}}
+  <meta http-equiv="refresh" content="5; url='/'">
+</head>
+
+<body>
+  <nav role='navigation'>
+    <div class='nav-wrapper container'>
+      {{navbar|safe}}
+      <ul class='right hide-on-med-and-down'>
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id='nav-mobile' class='side-nav'>
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href='#' data-activates='nav-mobile' class='button-collapse'><i class='material-icons'>menu</i></a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section">
+      <div class="container">
+        <h3 class="header center indigo-text">{{error_message}}</h3>
+        <br/>
+        <h5 class="center indigo-text">{{contacts|safe}}</h5>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section">
+      <div class="container">
+        <p class="center">Se non vieni automaticamente reindirizzato alla homepage, clicca <a href='/'>qui</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+  <script>
+    setTimeout(() => window.location.href = "/", 5000);
+  </script>
+</body>
+
+</html>

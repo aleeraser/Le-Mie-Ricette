@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+</head>
+
+<body>
+  <style type="text/css">
+    body {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    .red {
+      color: #BD1111;
+    }
+
+    table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+      border-spacing: 0;
+      /* vertical-align: top; */
+    }
+
+    td,
+    th {
+      /* font-family: Arial, sans-serif; */
+      /* font-size: 14px; */
+      padding: 10px 5px;
+      border-style: solid;
+      border-width: 1px;
+      /* overflow: hidden; */
+      /* word-break: normal; */
+    }
+
+    .bold {
+      font-weight: bold;
+      /* vertical-align: top; */
+    }
+
+    .normal {
+      font-weight: normal;
+    }
+  </style>
+
+  <h1 class="red">{{name}}</h1>
+
+  <h3 class="red">Informazioni</h3>
+
+  <table>
+    {{type|safe}}
+    <tr>
+      <td class="bold">Persone</td>
+      <td>{{people}}</td>
+    </tr>
+    <tr>
+      <td class="bold">Durata</td>
+      <td>{{duration}}</td>
+    </tr>
+    <tr>
+      <td class="bold">Difficoltà</td>
+      <td>{{difficulty}}</td>
+    </tr>
+    <tr>
+      <td class="bold">Punteggio</td>
+      <td>{{score}}</td>
+    </tr>
+    <tr>
+      <td class="bold">Metodo</td>
+      <td>{{method}}</td>
+    </tr>
+  </table>
+
+  <h3 class="red">Ingredienti</h3>
+  <table>
+    <tr>
+      <th class="bold">Nome</th>
+      <th class="bold">Quantità</th>
+      <th class="bold">Prezzo/kg (o litro)</th>
+    </tr>
+    {{ingredient_rows|safe}}
+    <tr>
+      <td></td>
+      <td class="bold">Tot. stimato</td>
+      <td>{{tot_price}}</td>
+    </tr>
+  </table>
+
+  <h3 class="red">Procedimento</h3>
+  <h5>{{description}}</h5>
+
+</body>
+
+</html>

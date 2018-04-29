@@ -1,0 +1,264 @@
+/* Custom Stylesheet */
+
+
+/**
+* Use this file to override Materialize files so you can update
+* the core Materialize files in the future
+*
+* Made By MaterializeCSS.com
+*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+.input-field .error:nth-of-type(1) {
+  color: red;
+}
+
+#form_section {
+  width: 98%;
+  margin-left: 1%;
+}
+
+.mobile_row {
+  margin-bottom: 0 !important;
+}
+
+.card-panel {
+  width: 100% !important;
+  padding: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+a.collection-item:hover {
+  background-color: #00796b !important;
+  color: white !important;
+}
+
+nav {
+  background-color: #003333;
+}
+
+#logo-wrapper img {
+  width: 6em;
+  height: 1.8em;
+  object-fit: contain;
+  margin-top: 0.1em;
+}
+
+footer a {
+  color: #e65100;
+}
+
+footer.page-footer {
+  padding-top: 0;
+}
+
+.ingr_row {
+  margin-left: 1px !important;
+}
+
+#counter {
+  display: none;
+}
+
+#survey_details {
+  font-size: large;
+}
+
+#votes {
+  font-size: 1.3em;
+}
+
+#icon_pdf {
+  font-size: 1em !important;
+}
+
+.survey_action {
+  margin: 0 0.5em;
+}
+
+.canvasjs-chart-credit {
+  display: none;
+}
+
+.chart-panel {
+  text-align: center;
+}
+
+#modal_about p {
+  line-height: 2em;
+}
+
+#modal_about p a {
+  color: #a5d6a7;
+  font-weight: 500;
+}
+
+.modal .modal-content {
+  padding-bottom: 0;
+}
+
+.home-button {
+  width: 12em;
+  margin-left: 1em;
+}
+
+#homepage_logo {
+  max-width: 20em;
+}
+
+.category-header {
+  line-height: 36px !important;
+}
+
+.form-range {
+  -webkit-margin-before: 4px;
+  -webkit-margin-after: 0;
+}
+
+#load-animation {
+  display: none;
+  margin: 0 auto;
+}
+
+table.recipes>tbody>tr:hover {
+  background-color: #00796b !important;
+  color: white !important;
+}
+
+table.recipes>tbody>tr {
+  background-color: #e0f2f1 !important;
+  color: #009688 !important;
+  border: 1px solid #e0e0e0;
+}
+
+tr>td:nth-child(2)>a {
+  color: black;
+}
+
+a.quantity {
+  cursor: default;
+}
+
+.container {
+  width: 88%;
+}
+
+div.wide-collection-container {
+  width: 86% !important;
+}
+
+.detail_picture {
+  box-shadow: .5em .5em .5em .5em rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+  padding: .2em;
+  background-color: gray;
+  width: 40%;
+  margin: -2.5rem auto 1rem;
+}
+
+#descrizione {
+  padding: 0;
+}
+
+#logo-container {
+  line-height: 100%;
+}
+
+#search_box {
+  /* background-image: url('/static/img/searchicon.png');
+	background-position: 10px 12px;
+	background-repeat: no-repeat; */
+  width: 100%;
+  /* float: right; */
+  /* font-size: 16px; */
+  /* padding: 12px 20px 12px 40px; */
+  border: 1px solid #ddd;
+  padding: 0 1em;
+  /* margin-bottom: 12px; */
+}
+
+#search_box .active {
+  color: black !important;
+}
+
+#search {
+  width: 90%;
+  margin: 0 0 0 2%;
+  border-bottom: none;
+}
+
+.select-wrapper input.select-dropdown {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.thumb {
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  /* mobile phones */
+  .margin-on-mobile-only {
+    margin-top: 5em !important;
+  }
+  .mobile-row {
+    margin-bottom: 0;
+  }
+  .mobile-section {
+    padding-top: 0;
+  }
+  .csv {
+    height: 5em;
+    padding: 0.5em 0.1em 0.6em 0em;
+  }
+  #csv_icon {
+    width: 4em;
+  }
+  .section {
+    padding-top: 0;
+  }
+  #logo-wrapper img {
+    margin-top: 0.18em;
+  }
+  .home-button {
+    width: 12em;
+    margin-top: 1em;
+    margin-left: 0;
+  }
+  #homepage_logo {
+    max-width: 15em;
+  }
+  br.hide {
+    display: none;
+  }
+  #recipe_picture {
+    width: 92%;
+    margin: -1rem auto 1rem;
+  }
+}
+
+@media only screen and (min-width: 751px) {
+  /* tablets */
+  footer.page-footer .footer-copyright {
+    line-height: 50px;
+  }
+}

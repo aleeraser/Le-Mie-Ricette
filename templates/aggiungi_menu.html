@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  {{page_head|safe}}
+</head>
+
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      {{navbar|safe}}
+      <ul class="right hide-on-med-and-down">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        {{menu_options|safe}}
+        <!-- Dynamic elements added with python -->
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br/>
+        <h3 class="header center indigo-text darken-4-text">Nuovo menu</h3>
+        <br/>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section" id="form_section">
+      <div class="container">
+        <div class="row">
+          <form class="col s12" enctype="multipart/form-data">
+
+            <!-- <div class="row mobile_row">
+              <div class="input-field col s12">
+                <input id="nome" name="nome" type="text" length="100" class="validate">
+                <label for="name">Nome</label>
+              </div>
+            </div> -->
+
+            <div class="row mobile_row">
+              <div class="input-field col s12">
+                <input id="nome" name="nome" type="text" class="datepicker" class="validate">
+                <label for="nome">Data del menu</label>
+              </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <input id="counter" type="text" name="counter"></input>
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Entrée</span>
+            </div>
+            <br class="hide-on-med-and-up" />
+            <div id="entree_div">
+
+              <!-- filled dynamically -->
+            </div>
+            <br/>
+            <div id="add_entree_div" class="center-on-small-only">
+              <br/>
+              <button id="add_entree" class="waves-effect waves-light btn" type="button">Aggiungi</button>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Antipasti</span>
+            </div>
+            <br class="hide-on-med-and-up" />
+            <div id="antipasti_div">
+              <!-- filled dynamically -->
+            </div>
+            <br/>
+            <div id="add_antipasti_div" class="center-on-small-only">
+              <br/>
+              <button id="add_antipasti" class="waves-effect waves-light btn" type="button">Aggiungi</button>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Primi</span>
+            </div>
+            <br class="hide-on-med-and-up" />
+            <div id="primi_div">
+              <!-- filled dynamically -->
+            </div>
+            <br/>
+            <div id="add_primi_div" class="center-on-small-only">
+              <br/>
+              <button id="add_primi" class="waves-effect waves-light btn" type="button">Aggiungi</button>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Secondi</span>
+            </div>
+            <br class="hide-on-med-and-up" />
+            <div id="secondi_div">
+              <!-- filled dynamically -->
+            </div>
+            <br/>
+            <div id="add_secondi_div" class="center-on-small-only">
+              <br/>
+              <button id="add_secondi" class="waves-effect waves-light btn" type="button">Aggiungi</button>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row mobile-row">
+              <span class="card-panel col s12 white-text orange darken-4 category-header">Lista Dessert</span>
+            </div>
+            <br class="hide-on-med-and-up" />
+            <div id="dessert_div">
+              <!-- filled dynamically -->
+            </div>
+            <br/>
+            <div id="add_dessert_div" class="center-on-small-only">
+              <br/>
+              <button id="add_dessert" class="waves-effect waves-light btn" type="button">Aggiungi</button>
+            </div>
+            <br/>
+            <hr class="hide-on-med-and-up" />
+            <br/>
+            <br/>
+
+            <div class="row center-on-small-only">
+              <button id="submit_button" class="waves-effect waves-light btn" type="submit" value="Upload">Conferma</button>
+            </div>
+            <br/>
+            <div class="row center-on-small-only">
+              <button id="back_button" class="waves-effect waves-light btn" type="button" onclick="window.history.back();">Indietro</button>
+            </div>
+          </form>
+
+          <div id="load-animation" class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  {{footer|safe}}
+  <!-- Dynamic footer added with python -->
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.min.js"></script>
+  <script src="../static/js/init.js"></script>
+
+  <script type="text/javascript">
+    var i = 0;
+    var recipe_count = {
+      "entree": 0,
+      "antipasti": 0,
+      "primi": 0,
+      "secondi": 0,
+      "dessert": 0
+    };
+    var form_is_valid = false;
+    var menu_is_unique = true;
+    var delete_enabled = {
+      "entree": true,
+      "antipasti": true,
+      "primi": true,
+      "secondi": true,
+      "dessert": true
+    };
+    var recipe_options = {
+      "entree": "",
+      "antipasti": "",
+      "primi": "",
+      "secondi": "",
+      "dessert": ""
+    };
+
+    function replaceAll(str, find, replace) {
+      return str.replace(new RegExp(find, 'g'), replace);
+    }
+
+    $(document).ready(function () {
+      // $('#back_button').on('focus', function () {
+      //   window.location.href = window.history.back();
+      // });
+
+      $("#counter").val(0);
+
+      var recipes = JSON.parse(`{{ saved_recipes | safe }}`);
+
+      for (var key in recipes) {
+        if (recipes.hasOwnProperty(key)) {
+          var k;
+          for (k = 0; k < recipes[key].length; k++) {
+            recipe_options[key] += "<option value='" + recipes[key][k] + "'>" + recipes[key][k].replace(
+              /__single_quote__/g, '\'').replace(/__double_quotes__/g, '"').replace(/_/g, " ") + "</option>";
+          }
+
+          if (recipe_options[key].length > 0) {
+            var singular = key[key.length - 1] == "i" ? key.substring(0, key.length - 1) + "o" : key;
+            singular = singular.replace("entree", "entrée");
+            recipe_options[key] += "<option value='_nuovo_'>+ Aggiungi nuovo " + singular + "</option>"
+          }
+        }
+      }
+
+      $('select').material_select();
+
+      $("#add_entree").click();
+      $("#add_antipasti").click();
+      $("#add_primi").click();
+      $("#add_secondi").click();
+      $("#add_dessert").click();
+    });
+
+    $("#nome").on("click", function () {
+      $('.picker--opened').show();
+      $('html').css("overflow", "hidden");
+    })
+
+    // pickdate needed a custom validity check
+    $('#nome').on('change', function () {
+      $('.picker--opened').hide();
+      $('html').css("overflow", "initial");
+      $('#nome').valid();
+    });
+
+    // Configure the pickdate dialog
+    $('.datepicker').pickadate({
+      selectMonths: true,
+      selectYears: 60, // can go back up to 60 years
+      // max: true, // set max to today's date
+
+      labelMonthNext: "Mese successivo",
+      labelMonthPrev: "Mese precedente",
+      labelMonthSelect: "Seleziona un mese",
+      labelYearSelect: "Seleziona un anno",
+      monthsFull: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre",
+        "Ottobre", "Novembre", "Dicembre"
+      ],
+      monthsShort: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
+      weekdaysFull: ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"],
+      weekdaysShort: ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"],
+      weekdaysLetter: ["D", "L", "M", "M", "G", "V", "S"],
+
+      today: "Oggi",
+      clear: false,
+      close: "Chiudi",
+      format: "d mmmm yyyy",
+    });
+
+    // Custom validators
+    jQuery.validator.addMethod("mustBeUnique", function (value, element) {
+      return this.optional(element) || menu_is_unique;
+    }, "Hai già inserito un menu con questo nome.");
+
+    // toogle delete button for ingredients
+    function checkDeleteButtonState(category) {
+      var min = 1;
+      $('#' + category + '_div .delete_btn').each(function () {
+        if ((recipe_count[category] == min) && (delete_enabled[category])) {
+          $(this).addClass('disabled').prop("disabled", true);
+        } else if ((recipe_count[category] == (min + 1)) && (!delete_enabled[category])) {
+          $(this).removeClass('disabled').prop("disabled", false);
+        }
+      });
+      delete_enabled[category] = !delete_enabled[category];
+    }
+
+    // add new recipe
+    $('#add_entree').on('click', function () {
+      i++;
+      recipe_count.entree++;
+
+      add_recipe('#entree_div');
+      checkDeleteButtonState("entree");
+    });
+    $('#add_antipasti').on('click', function () {
+      i++;
+      recipe_count.antipasti++;
+
+      add_recipe('#antipasti_div');
+      checkDeleteButtonState("antipasti");
+    });
+    $('#add_primi').on('click', function () {
+      i++;
+      recipe_count.primi++;
+
+      add_recipe('#primi_div');
+      checkDeleteButtonState("primi");
+    });
+    $('#add_secondi').on('click', function () {
+      i++;
+      recipe_count.secondi++;
+
+      add_recipe('#secondi_div');
+      checkDeleteButtonState("secondi");
+    });
+    $('#add_dessert').on('click', function () {
+      i++;
+      recipe_count.dessert++;
+
+      add_recipe('#dessert_div');
+      checkDeleteButtonState("dessert");
+    });
+
+    function check_add_new(el, new_path) {
+      if (el.value == "_nuovo_") {
+        window.location.replace(new_path);
+      }
+    }
+
+    function recipe_row(index, container_id) {
+      var category = container_id.split('#')[1].split('_')[0];
+      var html_string;
+
+      if (recipe_options[category] == "") {
+        var singular = category[category.length - 1] == "i" ? category.substring(0, category.length - 1) + "o" : category;
+        singular = singular.replace("entree", "entrée");
+        html_string =
+          '<div class="row mobile_row center"><div class="container"><p>Non hai ancora inserito alcuna ricetta per questa categoria! <a href="/aggiungi_ricetta">Inserisci un nuovo ' + singular + '</a>.</p></div></div>';
+        $('#add_' + category + '_div').remove();
+
+        i--;
+        recipe_count[category]--;
+
+      } else {
+        html_string = '<div class="row mobile_row" id="recipe_row_' + index +
+          '"><div class="input-field col s9 m10"><select onchange="check_add_new(this);" id="recipe_' + index +
+          '" name="recipe_' + index + '">' +
+          recipe_options[category] + '</select><label for="recipe_' + index +
+          '">Ricetta</label></div><div class="input-field col s2"><button id="delete_recipe_' +
+          index +
+          '" type="button" class="waves-effect waves-light btn delete_btn red white-text">X</button></div></div>';
+      }
+
+      return html_string;
+    }
+
+    function add_recipe(container_id) {
+      var new_recipe = recipe_row(i, container_id);
+      $(container_id).append(new_recipe);
+
+      $("#recipe_" + i).material_select();
+
+      $("#counter").val(i);
+    };
+
+    function get_category(id) {
+      var btn = $('#' + id);
+      var cat;
+
+      $('#entree_div .delete_btn').each(function () {
+        if ($(this).is(btn)) {
+          cat = "entree";
+        }
+      });
+
+      if (!cat) {
+        $('#antipasti_div .delete_btn').each(function () {
+          if ($(this).is(btn)) {
+            cat = "antipasti";
+          }
+        });
+      }
+
+      if (!cat) {
+        $('#primi_div .delete_btn').each(function () {
+          if ($(this).is(btn)) {
+            cat = "primi";
+          }
+        });
+      }
+
+      if (!cat) {
+        $('#secondi_div .delete_btn').each(function () {
+          if ($(this).is(btn)) {
+            cat = "secondi";
+          }
+        });
+      }
+
+      if (!cat) {
+        $('#dessert_div .delete_btn').each(function () {
+          if ($(this).is(btn)) {
+            cat = "dessert";
+          }
+        });
+      }
+
+      return cat
+    }
+
+    // delete recipe
+    $('form').on('click', '.delete_btn', function () {
+      var btn_id = $(this).attr('id');
+      var category = get_category(btn_id);
+
+      var recipe_num = btn_id.split("_")[2];
+      $("#recipe_row_" + recipe_num).remove();
+
+      for (k = parseInt(recipe_num) + 1; k <= i; k++) {
+        console.log(k);
+
+        var row = $("#recipe_row_" + k),
+          recipe_select = $("#recipe_" + k),
+          btn = $("#delete_recipe_" + k);
+
+        var new_index = k - 1;
+
+        row.attr('id', "recipe_row_" + new_index);
+
+        recipe_select.attr('name', "recipe_" + new_index);
+        $("div.select-wrapper:has(#recipe_" + k + ") + label").attr('for', "recipe_" + new_index);
+        recipe_select.attr('id', "recipe_" + new_index);
+
+        btn.attr('id', "delete_recipe_" + new_index);
+      }
+
+      recipe_count[category]--;
+      i--;
+      $("#counter").val(i);
+      checkDeleteButtonState(category);
+    });
+
+    // Rules for validate form fields
+    $('form').validate({
+      rules: {
+        nome: {
+          required: true,
+          maxlength: 100,
+          mustBeUnique: true
+        }
+      },
+      messages: {
+        nome: {
+          required: "Questo campo è obbligatorio.",
+          maxlength: "Inserisci al massimo 100 caratteri."
+        }
+      },
+      errorElement: 'div',
+      errorPlacement: function (error, element) {
+        var placement = $(element).data('error');
+        if (placement) {
+          $(placement).append(error)
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+
+    $('#nome').blur(function () {
+      $.ajax({
+        url: '/nel_database_' + $('#nome').val() + '_cat:menu_ricetta',
+        type: 'GET',
+        success: function (response) {
+          if (response == "1") {
+            menu_is_unique = false;
+            form_is_valid = false;
+          } else {
+            menu_is_unique = true;
+            form_is_valid = true;
+          }
+          $("#nome").valid();
+        },
+        error: function (a, b, c) {
+          console.log(a, b, c);
+        }
+      });
+    });
+
+    // Custon submit method
+    $('form').on("submit", function (event) {
+      event.preventDefault();
+
+      // $('#load_modal').openModal();
+      $('form').hide();
+      $('#load-animation').show();
+      
+      console.log($("#nome").val());
+      console.log($("#nome").text());
+      console.log($("#nome").html());
+
+      if (!$("#nome").valid() || $("#nome").val() == "") {
+        $('form').show();
+        $('#load-animation').hide();
+        form_is_valid = false;
+        $("#nome").focus();
+        return;
+      }
+
+      if (form_is_valid) {
+        $.ajax({
+          url: '/aggiungi_menu',
+          type: 'POST',
+          data: new FormData($('form')[0]),
+          cache: false,
+          contentType: false,
+          processData: false,
+
+          success: function (response) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            if (response == "0") {
+              menu_is_unique = false;
+              form_is_valid = false;
+              $("#nome").valid();
+            } else if (response == "1") {
+              form_is_valid = false;
+            } else if (response == "2") {
+              form_is_valid = false;
+            } else {
+              menu_is_unique = true;
+              form_is_valid = true;
+              window.location.replace(response);
+            }
+          },
+          error: function (a, b, c) {
+            // $('#load_modal').closeModal();
+            $('form').show();
+            $('#load-animation').hide();
+
+            console.log(a, b, c);
+          }
+        });
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
