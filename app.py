@@ -340,12 +340,17 @@ def aggiungi_ricetta():
 
     picture_path = None
 
-    picture = request.files["foto"]
-    # if picture and allowed_file(normalize(name) + "." + picture.filename.split(".")[-1]):
-    if picture:
-        filename = secure_filename(normalize(name) + "." + picture.filename.split(".")[-1])
-        picture_path = os.path.join(app.config['UPLOAD_FOLDER'] + "/ricette", filename)
-        picture.save(picture_path)
+    try:
+        picture = request.files["foto"]
+
+        # if picture and allowed_file(normalize(name) + "." + picture.filename.split(".")[-1]):
+        if picture:
+            filename = secure_filename(normalize(name) + "." + picture.filename.split(".")[-1])
+            picture_path = os.path.join(app.config['UPLOAD_FOLDER'] + "/ricette", filename)
+            picture.save(picture_path)
+    except Exception as e:
+        # picture not found
+        pass
 
     cur = mysql.connection.cursor()
 
@@ -729,12 +734,17 @@ def aggiungi_preparazione():
 
     picture_path = None
 
-    picture = request.files["foto"]
-    # if picture and allowed_file(normalize(name) + "." + picture.filename.split(".")[-1]):
-    if picture:
-        filename = secure_filename(normalize(name) + "." + picture.filename.split(".")[-1])
-        picture_path = os.path.join(app.config['UPLOAD_FOLDER'] + "/preparazioni", filename)
-        picture.save(picture_path)
+    try:
+        picture = request.files["foto"]
+
+        # if picture and allowed_file(normalize(name) + "." + picture.filename.split(".")[-1]):
+        if picture:
+            filename = secure_filename(normalize(name) + "." + picture.filename.split(".")[-1])
+            picture_path = os.path.join(app.config['UPLOAD_FOLDER'] + "/preparazioni", filename)
+            picture.save(picture_path)
+    except Exception as e:
+        # picture not found
+        pass
 
     cur = mysql.connection.cursor()
 
