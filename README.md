@@ -1,4 +1,8 @@
-# Le-Mie-Ricette
+# ![QR-Vey](static/img/logo2.png?raw=true "QR-Vey")
+
+# Le Mie Ricette
+
+<!-- add logo -->
 
 A simple platform for managing recipes, ingredients and menus.
 
