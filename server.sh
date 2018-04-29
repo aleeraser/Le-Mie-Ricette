@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PORT=5001
+
 function usage {
 	echo
 	echo "Usage:"
@@ -9,7 +11,7 @@ function usage {
 	echo "  - server stop         : stop server"
     echo "  - server debug        : start server in debug mode"
     echo
-	echo "Note: the server starts on localhost:5001."
+	echo "Note: the server starts on localhost:$PORT."
 }
 
 function err {
@@ -56,7 +58,7 @@ else
     if [ "$1" == "setup" ]; then
         setup
     elif [ "$1" == "start" ]; then
-        venv_activate && gunicorn app:app -b 0.0.0.0:5001 -p "le_mie_ricette.pid" -D && echo "Server started"
+        venv_activate && gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "Server started"
     elif [ "$1" == "restart" ]; then
         venv_activate && kill -HUP `cat le_mie_ricette.pid` && echo "Server restarted"
     elif [ "$1" == "stop" ]; then
@@ -66,7 +68,7 @@ else
         fi
         venv_activate && kill `cat ./le_mie_ricette.pid` && echo "Server stopped"
     elif [ "$1" == "debug" ]; then
-        venv_activate && gunicorn app:app -b 0.0.0.0:5001
+        venv_activate && gunicorn app:app -b 0.0.0.0:$PORT
     elif [ $# != 0 ]; then
         err "Wrong parameter."
     fi
