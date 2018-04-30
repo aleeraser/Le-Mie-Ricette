@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PORT=5001
+PORT=5000
 
 function usage {
 	echo
@@ -60,7 +60,12 @@ else
     elif [ "$1" == "start" ]; then
         venv_activate && gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "Server started"
     elif [ "$1" == "restart" ]; then
-        venv_activate && kill -HUP `cat le_mie_ricette.pid` && echo "Server restarted"
+        venv_activate
+	if [ ! -f "le_mie_ricette.pid" ]; then
+		gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "No server was running. Server started."
+	else
+		kill -HUP `cat le_mie_ricette.pid` && echo "Server restarted"
+	fi
     elif [ "$1" == "stop" ]; then
         if [ ! -f "./le_mie_ricette.pid" ]; then
             echo "Server was not running."
