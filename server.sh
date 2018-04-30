@@ -39,14 +39,14 @@ function setup {
     virtualenv flaskenv && venv_activate && pip install setuptools --upgrade && pip install -r requirements.txt
 
     cd "./static/"
-    mkdir "./img/uploaded"
-    mkdir "./img/uploaded/ingredienti"
-    mkdir "./img/uploaded/ricette"
-    mkdir "./img/uploaded/preparazioni"
-    mkdir "./pdf"
-    mkdir "./pdf/menu"
-    mkdir "./pdf/ricette"
-    mkdir "./pdf/preparazioni"
+    mkdir -p "./img/uploaded"
+    mkdir -p "./img/uploaded/ingredienti"
+    mkdir -p "./img/uploaded/ricette"
+    mkdir -p "./img/uploaded/preparazioni"
+    mkdir -p "./pdf"
+    mkdir -p "./pdf/menu"
+    mkdir -p "./pdf/ricette"
+    mkdir -p "./pdf/preparazioni"
 }
 
 if [ $# -ge "2" ]; then
