@@ -24,6 +24,13 @@ function venv_activate {
     source ./flaskenv/bin/activate
 }
 
+function assert_server_not_running {
+    if [ -f "./le_mie_ricette.pid" ]; then
+        echo "Server is already running."
+        exit 0
+    fi
+}
+
 function setup {
     echo
     echo "WARNING: pre-requisites are a working version of"
@@ -58,14 +65,15 @@ else
     if [ "$1" == "setup" ]; then
         setup
     elif [ "$1" == "start" ]; then
+        assert_server_not_running
         venv_activate && gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "Server started"
     elif [ "$1" == "restart" ]; then
         venv_activate
-	if [ ! -f "le_mie_ricette.pid" ]; then
-		gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "No server was running. Server started."
-	else
-		kill -HUP `cat le_mie_ricette.pid` && echo "Server restarted"
-	fi
+        if [ ! -f "le_mie_ricette.pid" ]; then
+            gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "No server was running. Server started."
+        else
+            kill -HUP `cat le_mie_ricette.pid` && echo "Server restarted"
+        fi
     elif [ "$1" == "stop" ]; then
         if [ ! -f "./le_mie_ricette.pid" ]; then
             echo "Server was not running."
@@ -73,6 +81,7 @@ else
         fi
         venv_activate && kill `cat ./le_mie_ricette.pid` && echo "Server stopped"
     elif [ "$1" == "debug" ]; then
+        assert_server_not_running
         venv_activate && gunicorn app:app -b 0.0.0.0:$PORT
     elif [ $# != 0 ]; then
         err "Wrong parameter."
