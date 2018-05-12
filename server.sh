@@ -79,7 +79,9 @@ else
             echo "Server was not running."
             exit 0
         fi
-        venv_activate && kill `cat ./le_mie_ricette.pid` && echo "Server stopped"
+        venv_activate
+        kill `cat ./le_mie_ricette.pid` || rm "./le_mie_ricette.pid"
+        echo "Server stopped"
     elif [ "$1" == "debug" ]; then
         assert_server_not_running
         venv_activate && gunicorn app:app -b 0.0.0.0:$PORT
