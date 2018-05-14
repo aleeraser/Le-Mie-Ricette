@@ -69,19 +69,20 @@ else
         venv_activate && gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "Server started"
     elif [ "$1" == "restart" ]; then
         venv_activate
+        kill -HUP `cat le_mie_ricette.pid &>/dev/null` &>/dev/null
         if [ ! -f "le_mie_ricette.pid" ]; then
             gunicorn app:app -b 0.0.0.0:$PORT -p "le_mie_ricette.pid" -D && echo "No server was running. Server started."
         else
-            kill -HUP `cat le_mie_ricette.pid` && echo "Server restarted"
+            echo "Server restarted"
         fi
     elif [ "$1" == "stop" ]; then
         if [ ! -f "./le_mie_ricette.pid" ]; then
             echo "Server was not running."
             exit 0
+        else
+            kill `cat ./le_mie_ricette.pid` &>/dev/null || rm "./le_mie_ricette.pid"
+            echo "Server stopped"
         fi
-        venv_activate
-        kill `cat ./le_mie_ricette.pid` || rm "./le_mie_ricette.pid"
-        echo "Server stopped"
     elif [ "$1" == "debug" ]; then
         assert_server_not_running
         venv_activate && gunicorn app:app -b 0.0.0.0:$PORT
